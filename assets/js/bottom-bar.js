@@ -105,7 +105,11 @@
         
         
         openCategories() {
-            this.categoriesOverlay.addClass('active');
+            this.categoriesOverlay.css('display', 'flex');
+            // کمی تاخیر برای شروع انیمیشن
+            setTimeout(() => {
+                this.categoriesOverlay.addClass('active');
+            }, 10);
             $('body').addClass('beban-overlay-open');
             
             // Analytics tracking
@@ -124,6 +128,11 @@
         closeCategories() {
             this.categoriesOverlay.removeClass('active');
             $('body').removeClass('beban-overlay-open');
+            
+            // بعد از اتمام انیمیشن، display را none کن
+            setTimeout(() => {
+                this.categoriesOverlay.css('display', 'none');
+            }, 300);
             
             // Accessibility
             this.categoriesOverlay.attr('aria-hidden', 'true');
